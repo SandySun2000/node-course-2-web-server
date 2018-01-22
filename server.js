@@ -21,9 +21,6 @@ app.use((req, res, next) => {
 });
 
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-});
 
 app.use(express.static(__dirname + '/public'));
 
@@ -31,21 +28,26 @@ hbs.registerHelper('getCurrentYear', () => {
    return new Date().getFullYear()
 })
 
-app.get('/about', (req, res) => {
-    res.render('about.hbs', {
-       pageTitle: 'About Page',
-       description: 'some text here',
-   });
-})
-
 app.get('/', (req, res) => {
     res.render('homepage.hbs', {
     pageTitle: 'Home Page',
-    description: 'this is the home page',
     welcomeMessage: "Welcome to sandy's page",
-});
+   });
 })
 
+app.get('/about', (req, res) => {
+    res.render('about.hbs', {
+       pageTitle: 'About Page',
+   });
+})
+
+
+
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+     pageTitle: 'Projects Page',
+  });
+})
 // /bad - send ack json with errorMessage
 
 app.get('/bad', (req, res) => {
